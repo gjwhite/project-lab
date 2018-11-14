@@ -1,0 +1,16 @@
+// RGBA fallback
+@mixin rgba($property, $background: black, $opacity: 0.75) {
+    #{$property}: rgba($background, $opacity);
+}
+
+// Multiply unit
+@function multiply($unit, $factor) {
+    @return $unit * $factor;
+}
+
+// Gradient BG
+@mixin bgGradient($bg-from, $bg-to) {
+    background: $bg-from;/* Old Browsers */
+    background: linear-gradient(to bottom, $bg-from 0%, $bg-to 90%);/* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startcolorstr='$bg-from', endcolorstr='$bg-to', gradienttype=0 );/* IE6-9 */
+}

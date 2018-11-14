@@ -1,0 +1,60 @@
+.button {
+    border-radius: $b-radius;
+    border: 1px solid $cl-rest;
+    color: $ct-light;
+    font-weight: 600;
+    outline: none;
+    text-decoration: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.button--primary {
+    background-color: $c-one;
+    border-color: $c-two;
+    width: 100%;
+    max-width: 230px;
+    padding: multiply($spacing, 2);
+    margin: 0 auto;
+    transition: background-color 0.6s $easing 0s;
+
+    &:hover,
+    &:focus {
+        max-width: 236px;
+        background-color: lighten($c-one, 5%);
+        transition: background-color 0.6s $easing 0s;
+    }
+
+    &:active {
+        max-width: 228px;
+        background-color: $c-two;
+        transition: background-color 0.6s $easing 0s;
+    }
+}
+
+.link--flash {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        box-sizing: border-box;
+        width: 100%;
+        height: 1px;
+        background-color: $cl-rest;
+        transform: scale3d(0,1,1);
+        transition: transform 0.6s $easing 0s, background-color 0.5s $easing 0.1s;
+        left: 0;
+        bottom: 0;
+        transform-origin: 100% 50%;
+    }
+
+    &:hover,
+    &:focus {
+        &::after {
+            background-color: $cl-hover;
+            transform: scale3d(1,1,1);
+            transform-origin: 0 50%;
+        }
+    }
+}

@@ -1,0 +1,48 @@
+.c-accordion__header {
+    clear: both;
+    padding: 10px 0;
+}
+
+.c-accordion__header:hover,
+.c-accordion__header:focus {
+    cursor: pointer;
+}
+
+.c-accordion__header + .c-accordion__body {
+    backface-visibility: hidden;
+    perspective: 100;
+    box-sizing: border-box;
+    height: calc(1px - 1px);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: height 1s ease, opacity 0.66s ease 0s;
+    position: relative;
+}
+
+.c-accordion__header.s-active + .c-accordion__body,
+.c-accordion__header:hover + .c-accordion__body,
+.c-accordion__header:focus + .c-accordion__body {
+    height: auto;
+    max-height: calc(10% + 90%);
+    opacity: 1;
+    overflow: auto;
+    //transition: height 3s ease, opacity 0.3s ease 0.5s;
+}
+
+.c-accordion__body::after {
+    content: '';
+    width: 100%;
+    position: absolute;
+    opacity: 1;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    color: $c-five;
+}
+
+.c-accordion--position {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+}

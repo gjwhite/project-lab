@@ -1,0 +1,48 @@
+html {
+    font-size: $pixel-size;
+}
+
+body {
+    font-family: $font-body;
+    font-size: $font-size-base;
+    font-weight: 400;
+    line-height: 1.125rem;
+    letter-spacing: -0.025rem;
+    color: $ct-mid;
+    text-align: left;
+}
+
+h1 {
+    font-family: $font-title;
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 1.875rem;
+    letter-spacing: -0.025rem;
+    color: $cl-rest;
+}
+
+h3 {
+    font-weight: 600;
+}
+
+p {
+    font-size: 18px;
+    line-height: 24px;
+}
+
+a {
+    color: $cl-rest;
+    text-decoration: none;
+    transition: color 0.3s $easing 0s;
+
+    &:hover,
+    &:focus {
+        color: $cl-hover;
+        transition: color 0.6s $easing 0s;
+    }
+
+    &:active {
+        color: darken($cl-rest, 5%);
+        transition: color 0.15s $easing 0s;
+    }
+}

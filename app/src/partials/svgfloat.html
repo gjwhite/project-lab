@@ -1,0 +1,65 @@
+<section class="c-svgfloat" id="anime">
+	<div class="c-svgfloat__object-wrap">
+		<div
+            class="c-svgfloat__object"
+            data-toggle=".c-svgfloat__object"
+            data-toggle-class="active"
+            >
+			<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 200 200" display="none">
+				<defs>
+						<filter id="turbulence-1">
+								<feTurbulence type="turbulence" baseFrequency="0.5" seed="55" stitchTiles="stitch" numOctaves="2" />
+								<feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" scale="185" />
+							  </filter>
+
+							  <filter id="turbulence-2">
+								<feTurbulence type="turbulence" baseFrequency="0.6" seed="60" stitchTiles="stitch" numOctaves="3" />
+								<feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" scale="173" />
+							  </filter>
+
+							  <filter id="turbulence-3">
+								<feTurbulence type="turbulence" baseFrequency="0.65" seed="48" stitchTiles="stitch" numOctaves="2" />
+								<feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" scale="195" />
+							  </filter>
+
+							  <filter id="turbulence-4">
+								<feTurbulence type="turbulence" baseFrequency="0.58" seed="61" stitchTiles="stitch" numOctaves="3" />
+								<feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" scale="184" />
+							  </filter>
+
+							  <filter id="turbulence-5">
+								<feTurbulence type="turbulence" baseFrequency="0.62" seed="84" stitchTiles="stitch" numOctaves="1" />
+								<feDisplacementMap xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" scale="192" />
+							  </filter>
+					</defs>
+			</svg>
+			<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 200 200">
+				<defs>
+						<filter id="lightMe1">
+								<feDiffuseLighting in="SourceGraphic" result="light"
+									lighting-color="white">
+								  <fePointLight x="80" y="70" z="40" />
+								</feDiffuseLighting>
+
+								<feComposite in="SourceGraphic" in2="light"
+											 operator="arithmetic" k1="1" k2="0" k3="0" k4="0"/>
+							  </filter>
+					<mask id="animeMask">
+							<path id="rest" fill="#ffffff" d="M133,159 C147,164 194.095954,128.940754 196,98 C200,33 161,4 151,1 C141,-2 101,13 85,13 C69,13 34,10 29,29 C20.3819532,61.7485777 -6,57 2,98 C10.3985271,141.042451 35,156 52,150 C69.5893743,143.791986 112.781058,151.778949 133,159 Z"/>
+							<path id="one" opacity="0" fill="url(#img1)" d="M114,164 C127,142 174.614742,125.053555 182,94.7864798 C190,62 138,48 138,34 C138,20 85,18 69,4 C53,-10 29.6844615,28.0735877 23,39.3857533 C10,61.3857533 -4.83226145,87.6398716 2,110 C13,146 11,144 36,169 C48.567236,181.567236 104.154535,180.661556 114,164 Z"/>
+							<path id="two" opacity="0" fill="url(#img1)"d="M118,176 C166.324916,176 186,119 176,93 C167.627114,71.230497 165.908038,43.0622588 151.081167,27.3857533 C135.131081,10.521669 112.544274,0 87.5,0 C62.6119638,0 59,38 46,41 C18.5608948,47.3321012 0,64.0631206 0,87.5 C0,122.008117 35.6563095,127.312619 50,156 C58,172 104.183202,176 118,176 Z"/>
+					</mask>
+					<pattern id="img1" patternUnits="userSpaceOnUse" width="400" height="400">
+						<image xlink:href="http://garethwhite.co.nz/wp-content/uploads/2015/08/winter-light-8899.jpg" x="-100" y="-100" width="400" height="400" />
+					</pattern>
+				</defs>
+
+				<g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" mask="url(#animeMask)" style="filter: url(#lightMe1)">
+					<circle id="Circle" fill="url(#img1)" fill-rule="nonzero" cx="100" cy="100" r="100"></circle>
+				</g>
+
+			</svg>
+			</div>
+		  <div class="shadow"></div>
+	</div>
+</section>
