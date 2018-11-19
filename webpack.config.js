@@ -1,14 +1,14 @@
 const path = require('path');
 
 module.exports = {
-  entry: './app/src/index.js',
+  entry: './src/index.js',
   output: {
-    path: __dirname + '/app/dist',
+    path: __dirname + '/dist',
     filename: 'index_bundle.js',
     publicPath: ''
   },
   devServer: {
-      contentBase: './app/dist'
+      contentBase: './dist'
   },
   module: {
     rules: [

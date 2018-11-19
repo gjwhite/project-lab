@@ -17,6 +17,8 @@ const del = require('del');
 const rename = require('gulp-rename');
 const runSequence = require('run-sequence');
 var nunjucksRender = require('gulp-nunjucks-render');
+var nunjucksHTML = require('gulp-nunjucks-html');
+var data = require('gulp-data');
 var webpack = require('webpack-stream');
 
 const postcssPlugins = [
@@ -44,7 +46,7 @@ function handleError (error) {
 // });
 
 gulp.task('sass', ['lint-scss'], function() {
-	return gulp.src('app/src/scss/**/*.scss')
+	return gulp.src('src/scss/**/*.scss')
 	.pipe(sourcemaps.init())
 	.pipe(gulpStylelint())
 	.pipe($.sass())
@@ -52,7 +54,7 @@ gulp.task('sass', ['lint-scss'], function() {
 	.pipe(cssnano())
 	.pipe(rename('main.min.css'))
 	.pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('app/dist/css/'))
+    .pipe(gulp.dest('dist/css/'))
     .on('error', handleError)
 	.pipe(browserSync.reload({
 		stream: true
@@ -61,7 +63,7 @@ gulp.task('sass', ['lint-scss'], function() {
 
 gulp.task('lint-scss', function lintCssTask() {
 	return gulp
-    .src('app/src/**/*.scss')
+    .src('src/**/*.scss')
 
 	.pipe(gulpStylelint({
 	reporters: [
@@ -71,47 +73,72 @@ gulp.task('lint-scss', function lintCssTask() {
 });
 
 gulp.task('templates', function () {
-	return gulp.src('app/src/*.html')
+	return gulp.src('src/*.html')
 	.pipe(nunjucksRender({
-		path: ['app/src/']
+		path: ['src/']
 	}))
-	.pipe(gulp.dest('app/dist'))
+	.pipe(gulp.dest('dist'))
 	.pipe(browserSync.reload({
 		stream: true
 	}))
 });
 
+// gulp.task('patterns', function () {
+//     return gulp.src('src/components/*.njk')
+//     .pipe(data(function(file) {
+//         return JSON.parse(fs.readFileSync('./' + path.basename+'.data'.file.path + '.json'));
+//       }))
+// 	.pipe(nunjucksRender({
+// 		path: 'src/components/'
+// 	}))
+// 	.pipe(gulp.dest('src/components/'));
+// });
+
+// function getDataForFile(file) {
+//     return {
+//         example: 'data loaded for ' + file.relative
+//     };
+// }
+
+gulp.task('pattern', function () {
+    return gulp.src('src/components/**/*.njk')
+    .pipe(nunjucksRender({
+        path: 'src/components/**'
+    }))
+    .pipe(gulp.dest('src/components'));
+});
+
 gulp.task('watch', ['browserSync', 'sass', 'templates'], function(){
 	watch = true;
-	gulp.watch('app/src/scss/**/*.scss', ['sass']);
-	gulp.watch('app/src/**/*.html', ['templates'], browserSync.reload);
-  	gulp.watch('app/src/js/**/*.js', browserSync.reload);
+	gulp.watch('src/scss/**/*.scss', ['sass']);
+	gulp.watch('src/**/*.html', ['templates'], browserSync.reload);
+  	gulp.watch('src/js/**/*.js', browserSync.reload);
 });
 
 
 
 
 gulp.task('scripts', function () {
-	return gulp.src('app/src/index.js')
+	return gulp.src('src/index.js')
     .pipe(webpack( require('./webpack.config.js') ))
-    .pipe(gulp.dest('app/dist/'));
+    .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('images', function(){
-	return gulp.src('app/src/assets/**/*.+(png|jpg|jpeg|gif|svg)')
+	return gulp.src('src/assets/**/*.+(png|jpg|jpeg|gif|svg)')
 	.pipe(cache(imagemin({
 		interlaced: true
 	  })))
-	.pipe(gulp.dest('app/dist/assets'))
+	.pipe(gulp.dest('dist/assets'))
 });
 
 gulp.task('fonts', function() {
-	return gulp.src('app/src/fonts/**/*')
-	.pipe(gulp.dest('app/dist/fonts'))
+	return gulp.src('src/fonts/**/*')
+	.pipe(gulp.dest('dist/fonts'))
 });
 
 gulp.task('clean:dist', function() {
-	return del.sync('app/dist');
+	return del.sync('dist');
 });
 
 gulp.task('cache:clear', function (callback) {
@@ -121,7 +148,7 @@ gulp.task('cache:clear', function (callback) {
 gulp.task('browserSync', function() {
 	browserSync.init({
 		server: {
-		baseDir: 'app/dist'
+		baseDir: 'dist'
 		},
 	})
 });
