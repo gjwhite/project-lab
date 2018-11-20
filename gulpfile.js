@@ -17,8 +17,8 @@ const del = require('del');
 const rename = require('gulp-rename');
 const runSequence = require('run-sequence');
 var nunjucksRender = require('gulp-nunjucks-render');
-var nunjucksHTML = require('gulp-nunjucks-html');
 var data = require('gulp-data');
+var dataJson = require("gulp-data-json");
 var webpack = require('webpack-stream');
 
 const postcssPlugins = [
@@ -83,30 +83,38 @@ gulp.task('templates', function () {
 	}))
 });
 
-// gulp.task('patterns', function () {
-//     return gulp.src('src/components/*.njk')
-//     .pipe(data(function(file) {
-//         return JSON.parse(fs.readFileSync('./' + path.basename+'.data'.file.path + '.json'));
-//       }))
-// 	.pipe(nunjucksRender({
-// 		path: 'src/components/'
-// 	}))
-// 	.pipe(gulp.dest('src/components/'));
-// });
-
 // function getDataForFile(file) {
 //     return {
 //         example: 'data loaded for ' + file.relative
 //     };
 // }
 
+// sync
+// var fs = require('fs');
+// var obj = JSON.parse(fs.readFileSync('file', 'utf8'));
+
+// async
+// var fs = require('fs');
+// var obj;
+// fs.readFile('file', 'utf8', function (err, data) {
+//   if (err) throw err;
+//   obj = JSON.parse(data);
+// });
+
 gulp.task('pattern', function () {
     return gulp.src('src/components/**/*.njk')
+    // .pipe(data( function(file) {
+    //     return JSON.parse(
+    //         fs.readFileSync('src/components/**/*.json')
+    //     );
+    // } ))
     .pipe(nunjucksRender({
-        path: 'src/components/**'
+        path: ['src/components/'],
+        watch: false,
     }))
-    .pipe(gulp.dest('src/components'));
+    .pipe(gulp.dest('src/components/'));
 });
+
 
 gulp.task('watch', ['browserSync', 'sass', 'templates'], function(){
 	watch = true;

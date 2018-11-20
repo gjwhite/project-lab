@@ -2,7 +2,7 @@ module.exports = {
 	title: 'project lab',
 	description: 'project desc',
     src: 'src/components/',
-    pattern: '**/[^_]*.{ejs,njk,hbs,twig}',
+    pattern: '**/[^_]*.{njk,twig}',
     url: (url) => '' + url,
     statuses: {
 		wip: {
