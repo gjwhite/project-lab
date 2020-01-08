@@ -1,9 +1,13 @@
 var $ = require("jquery");
 
 $(document).bind('mousemove', function(e){
+    $('html').css({
+        cursor: none,
+    });
+
     $('.follow').css({
-       left:  e.pageX - 8,
-       top:   e.pageY - 8
+        left: e.pagex - 8,
+        top: e.pagey - 8,
     });
 });
 
